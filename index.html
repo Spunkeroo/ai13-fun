@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ai13.fun — AI That's Actually Fun</title>
+<meta name="description" content="AI jokes, image prompts, quiz generator, and more. Fun tools powered by AI. No signup. No BS.">
+<meta name="keywords" content="AI tools, AI jokes, AI image prompts, AI quiz, fun AI, artificial intelligence">
+<meta property="og:title" content="ai13.fun — AI That's Actually Fun">
+<meta property="og:description" content="AI jokes, image prompts, quiz generator, and more. Fun tools powered by AI. No signup. No BS.">
+<meta property="og:url" content="https://ai13.fun/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ai13.fun — AI That's Actually Fun">
+<meta name="twitter:description" content="Fun tools powered by AI. No signup. No BS.">
+<meta name="twitter:site" content="@SpunkArt13">
+<link rel="canonical" href="https://ai13.fun/">
+<style>
+:root {
+  --bg: #0a0a0f;
+  --card: #1a1a2e;
+  --card2: #12121a;
+  --accent: #bf5af2;
+  --accent2: #00f5d4;
+  --purple: #bf5af2;
+  --cyan: #00f5d4;
+  --text: #f0f0f0;
+  --muted: #a0a0b8;
+  --border: #2a2a3e;
+  --radius: 12px;
+}
+
+@keyframes vtrPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 12px rgba(191,90,242,0.3); }
+  50% { box-shadow: 0 0 28px rgba(191,90,242,0.7); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  background: rgba(10,10,15,0.95);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.nav-logo span:first-child {
+  font-size: 1.3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-logo span:last-child {
+  font-size: 0.7rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-tip {
+  background: transparent;
+  border: 1px solid var(--purple);
+  color: var(--purple);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-tip:hover { background: var(--purple); color: #fff; }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 72px 20px 48px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(191,90,242,0.12) 0%, transparent 70%);
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.15;
+  background: linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 14px;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* SECTION */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title .badge {
+  font-size: 0.65rem;
+  background: var(--purple);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  animation: fadeIn 0.4s ease both;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 48px 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* TOOL 1 — JOKE GENERATOR */
+#joke-display {
+  font-size: 1.1rem;
+  color: var(--text);
+  font-style: italic;
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  line-height: 1.7;
+  transition: opacity 0.2s ease;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: glow 3s ease infinite;
+}
+.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+.btn-secondary {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 22px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--purple); color: var(--purple); }
+
+/* TOOL 2 — PROMPT GENERATOR */
+.prompt-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.prompt-cat-btn {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.prompt-cat-btn:hover { border-color: var(--purple); color: var(--purple); }
+.prompt-cat-btn.active {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #fff;
+}
+
+#prompt-display {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  font-size: 0.95rem;
+  color: var(--cyan);
+  line-height: 1.7;
+  min-height: 60px;
+  margin-bottom: 16px;
+  font-family: 'Courier New', monospace;
+}
+
+.prompt-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.btn-leo {
+  background: linear-gradient(135deg, #6d28d9, #bf5af2);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 24px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-leo:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* TOOL 3 — QUIZ */
+.quiz-progress-bar {
+  background: var(--border);
+  border-radius: 4px;
+  height: 6px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.quiz-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--cyan));
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+#quiz-question {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  min-height: 30px;
+}
+
+#quiz-progress {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+
+#quiz-options button.quiz-opt:hover {
+  border-color: var(--purple) !important;
+  color: var(--purple) !important;
+}
+
+#quiz-result-section {
+  display: none;
+  text-align: center;
+  padding-top: 12px;
+}
+
+.score-display {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.quiz-share-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #1da1f2;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 24px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 14px;
+  margin-right: 8px;
+  transition: all 0.2s;
+}
+.quiz-share-link:hover { opacity: 0.85; }
+
+/* NEWS FEED */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.news-item {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  transition: border-color 0.2s;
+}
+.news-item:hover { border-color: var(--purple); }
+
+.news-item a {
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 6px;
+}
+.news-item a:hover { color: var(--cyan); }
+
+.news-score {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+/* TOKEN PRICES */
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .token-grid { grid-template-columns: 1fr; }
+}
+
+.token-card {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.token-card:hover { border-color: var(--cyan); }
+
+.token-sym {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--cyan);
+  margin-bottom: 4px;
+}
+
+.token-name {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.token-price {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* AFFILIATE CARDS */
+.affiliate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.aff-card {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 18px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.aff-card:hover { border-color: var(--purple); transform: translateY(-2px); }
+
+.aff-icon {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+}
+
+.aff-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.aff-desc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.aff-cta {
+  font-size: 0.78rem;
+  color: var(--purple);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* EMPIRE GRID */
+.empire-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.empire-link {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: all 0.18s;
+}
+.empire-link:hover { border-color: var(--cyan); color: var(--cyan); }
+.empire-link.current { border-color: var(--purple); color: var(--purple); }
+
+/* FOOTER */
+footer {
+  background: var(--card2);
+  border-top: 1px solid var(--border);
+  padding: 36px 20px;
+  text-align: center;
+  margin-top: 64px;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-bottom: 6px;
+}
+
+footer a {
+  color: var(--purple);
+  text-decoration: none;
+}
+footer a:hover { color: var(--cyan); }
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .hero { padding: 48px 20px 32px; }
+  .card { padding: 20px 16px; }
+  .prompt-actions { flex-direction: column; }
+  .prompt-actions > * { width: 100%; text-align: center; }
+}
+
+/* LAYOUT SPACING */
+.tools-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tool-block {
+  padding: 40px 0;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span>🤖 ai13.fun</span>
+    <span>AI jokes, prompts, quiz &amp; more</span>
+  </div>
+  <div class="nav-right">
+    <button class="btn-tip" onclick="openTip()">🧡 Tip</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>AI That Doesn't Take<br>Itself Too Seriously</h1>
+  <p>Fun tools powered by AI. No signup. No BS.</p>
+</div>
+
+<!-- TOOLS WRAPPER -->
+<div class="tools-wrapper">
+
+  <!-- TOOL 1 — JOKE GENERATOR -->
+  <div class="tool-block">
+    <div class="section-title">
+      <span>😂</span>
+      AI Joke Generator
+      <span class="badge">Tool</span>
+    </div>
+    <div class="card">
+      <div id="joke-display">Loading your first AI joke...</div>
+      <button class="btn-primary" onclick="generateJoke()">Generate AI Joke</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TOOL 2 — IMAGE PROMPT GENERATOR -->
+  <div class="tool-block">
+    <div class="section-title">
+      <span>🎨</span>
+      AI Image Prompt Generator
+      <span class="badge">Tool</span>
+    </div>
+    <div class="card">
+      <div class="prompt-cats">
+        <button class="prompt-cat-btn active" onclick="setPromptCat('fantasy',this)">Fantasy</button>
+        <button class="prompt-cat-btn" onclick="setPromptCat('scifi',this)">Sci-Fi</button>
+        <button class="prompt-cat-btn" onclick="setPromptCat('portraits',this)">Portraits</button>
+        <button class="prompt-cat-btn" onclick="setPromptCat('landscape',this)">Landscape</button>
+        <button class="prompt-cat-btn" onclick="setPromptCat('abstract',this)">Abstract</button>
+        <button class="prompt-cat-btn" onclick="setPromptCat('cyberpunk',this)">Cyberpunk</button>
+      </div>
+      <div id="prompt-display">Click a category to generate an image prompt...</div>
+      <div class="prompt-actions">
+        <button class="btn-primary" onclick="generatePrompt()">New Prompt</button>
+        <button class="btn-secondary" id="copy-prompt-btn" onclick="copyPrompt()">Copy Prompt</button>
+        <a class="btn-leo" href="https://app.leonardo.ai/?via=spunkart" target="_blank" rel="noopener">Try on Leonardo AI &#x2197;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TOOL 3 — QUIZ -->
+  <div class="tool-block">
+    <div class="section-title">
+      <span>🧠</span>
+      AI Knowledge Quiz
+      <span class="badge">5 Questions</span>
+    </div>
+    <div class="card">
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quiz-progress-fill" style="width:0%"></div>
+      </div>
+      <div id="quiz-progress" style="color:#a0a0b8;font-size:0.8rem;margin-bottom:12px;">Question 1/5</div>
+      <div id="quiz-question" style="font-size:1.1rem;font-weight:700;color:#f0f0f0;margin-bottom:16px;min-height:30px;"></div>
+      <div id="quiz-options"></div>
+      <div id="quiz-result-section" style="display:none;text-align:center;padding-top:12px;">
+        <div class="score-display" id="quiz-score"></div>
+        <p style="color:#a0a0b8;font-size:0.95rem;margin-bottom:4px;">Correct answers</p>
+        <div>
+          <a id="quiz-share" href="#" target="_blank" rel="noopener" class="quiz-share-link">&#x1D54F; Share on X</a>
+          <button class="btn-secondary" onclick="startQuiz()" style="margin-top:14px;">Play Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- AI NEWS -->
+  <div class="tool-block">
+    <div class="section-title">
+      <span>📰</span>
+      AI News
+      <span class="badge">Live from HN</span>
+    </div>
+    <div id="ai-news" class="news-grid">
+      <div class="news-item">
+        <a href="#">Loading AI news...</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- AI TOKENS -->
+  <div class="tool-block">
+    <div class="section-title">
+      <span>💹</span>
+      AI Token Prices
+      <span class="badge">Live</span>
+    </div>
+    <div class="token-grid">
+      <div class="token-card">
+        <div class="token-sym">RNDR</div>
+        <div class="token-name">Render Network</div>
+        <div class="token-price" id="price-rndr">—</div>
+      </div>
+      <div class="token-card">
+        <div class="token-sym">FET</div>
+        <div class="token-name">Fetch.AI</div>
+        <div class="token-price" id="price-fet">—</div>
+      </div>
+      <div class="token-card">
+        <div class="token-sym">AGIX</div>
+        <div class="token-name">SingularityNET</div>
+        <div class="token-price" id="price-agix">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- AFFILIATES -->
+  <div class="tool-block">
+    <div class="section-title">
+      <span>⚡</span>
+      Recommended AI Tools
+    </div>
+    <div class="affiliate-grid">
+      <a class="aff-card" href="https://app.leonardo.ai/?via=spunkart" target="_blank" rel="noopener">
+        <div class="aff-icon">🎨</div>
+        <div class="aff-name">Leonardo AI</div>
+        <div class="aff-desc">Generate stunning images with AI. Best quality prompts start here.</div>
+        <div class="aff-cta">Try free &#x2192;</div>
+      </a>
+      <a class="aff-card" href="https://www.canva.com/join/spunkart" target="_blank" rel="noopener">
+        <div class="aff-icon">✏️</div>
+        <div class="aff-name">Canva</div>
+        <div class="aff-desc">Design anything with AI magic. Templates, graphics, and more.</div>
+        <div class="aff-cta">Design free &#x2192;</div>
+      </a>
+      <a class="aff-card" href="https://www.make.com/en/register?pc=spunk" target="_blank" rel="noopener">
+        <div class="aff-icon">⚙️</div>
+        <div class="aff-name">Make.com</div>
+        <div class="aff-desc">Automate anything with no code. Connect your AI tools together.</div>
+        <div class="aff-cta">Automate free &#x2192;</div>
+      </a>
+      <a class="aff-card" href="https://www.fiverr.com/s/spunkart" target="_blank" rel="noopener">
+        <div class="aff-icon">💼</div>
+        <div class="aff-name">Fiverr</div>
+        <div class="aff-desc">Hire AI experts and freelancers. Get your project done fast.</div>
+        <div class="aff-cta">Browse talent &#x2192;</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EMPIRE GRID -->
+  <div class="tool-block">
+    <div class="section-title">
+      <span>🌐</span>
+      Our Network
+    </div>
+    <div class="empire-grid">
+      <a class="empire-link" href="https://spunk.bet" target="_blank" rel="noopener">spunk.bet</a>
+      <a class="empire-link" href="https://pfp.best" target="_blank" rel="noopener">pfp.best</a>
+      <a class="empire-link" href="https://spunkart.com" target="_blank" rel="noopener">spunkart.com</a>
+      <a class="empire-link" href="https://13.money" target="_blank" rel="noopener">13.money</a>
+      <a class="empire-link" href="https://13.markets" target="_blank" rel="noopener">13.markets</a>
+      <a class="empire-link" href="https://13.golf" target="_blank" rel="noopener">13.golf</a>
+      <a class="empire-link" href="https://13.energy" target="_blank" rel="noopener">13.energy</a>
+      <a class="empire-link" href="https://13.dance" target="_blank" rel="noopener">13.dance</a>
+      <a class="empire-link" href="https://free.institute" target="_blank" rel="noopener">free.institute</a>
+      <a class="empire-link" href="https://free.gripe" target="_blank" rel="noopener">free.gripe</a>
+      <a class="empire-link" href="https://chicago.coach" target="_blank" rel="noopener">chicago.coach</a>
+      <a class="empire-link" href="https://predict.horse" target="_blank" rel="noopener">predict.horse</a>
+      <a class="empire-link" href="https://predict.pics" target="_blank" rel="noopener">predict.pics</a>
+      <a class="empire-link" href="https://predict.mom" target="_blank" rel="noopener">predict.mom</a>
+      <a class="empire-link" href="https://predict.codes" target="_blank" rel="noopener">predict.codes</a>
+      <a class="empire-link" href="https://predict.boats" target="_blank" rel="noopener">predict.boats</a>
+      <a class="empire-link" href="https://predict.yachts" target="_blank" rel="noopener">predict.yachts</a>
+      <a class="empire-link" href="https://alien.best" target="_blank" rel="noopener">alien.best</a>
+      <a class="empire-link" href="https://plush.best" target="_blank" rel="noopener">plush.best</a>
+      <a class="empire-link" href="https://plush.surf" target="_blank" rel="noopener">plush.surf</a>
+      <a class="empire-link" href="https://clown.best" target="_blank" rel="noopener">clown.best</a>
+      <a class="empire-link" href="https://clown.surf" target="_blank" rel="noopener">clown.surf</a>
+      <a class="empire-link" href="https://clown.cam" target="_blank" rel="noopener">clown.cam</a>
+      <a class="empire-link" href="https://clown.sbs" target="_blank" rel="noopener">clown.sbs</a>
+      <a class="empire-link" href="https://iai.autos" target="_blank" rel="noopener">iai.autos</a>
+      <a class="empire-link" href="https://iai.boats" target="_blank" rel="noopener">iai.boats</a>
+      <a class="empire-link" href="https://i13.best" target="_blank" rel="noopener">i13.best</a>
+      <a class="empire-link" href="https://i13.buzz" target="_blank" rel="noopener">i13.buzz</a>
+      <a class="empire-link" href="https://i13.autos" target="_blank" rel="noopener">i13.autos</a>
+      <a class="empire-link" href="https://i13.lat" target="_blank" rel="noopener">i13.lat</a>
+      <a class="empire-link" href="https://i13.pics" target="_blank" rel="noopener">i13.pics</a>
+      <a class="empire-link" href="https://i13.space" target="_blank" rel="noopener">i13.space</a>
+      <a class="empire-link current" href="https://ai13.fun" target="_blank" rel="noopener">ai13.fun</a>
+      <a class="empire-link" href="https://ai13.store" target="_blank" rel="noopener">ai13.store</a>
+    </div>
+  </div>
+
+</div><!-- /tools-wrapper -->
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <a href="https://spunkart.com" target="_blank" rel="noopener">@SpunkArt13</a> with AI. Under <a href="https://spunkart.com" target="_blank" rel="noopener">SPUNK LLC</a>.</p>
+  <p style="margin-top:4px;">AI jokes, prompts &amp; quiz — no signup, always free.</p>
+  <p style="margin-top:12px;"><button class="btn-tip" onclick="openTip()" style="font-size:0.8rem;">🧡 Tip to keep it free</button></p>
+</footer>
+
+<!-- VTR BADGE -->
+<div style="position:fixed;bottom:12px;right:12px;background:#1a1a2e;border:1px solid #2a2a3e;border-radius:20px;padding:6px 14px;font-size:12px;color:#a0a0b8;z-index:9999;display:flex;align-items:center;gap:6px;" id="vtr-badge">
+  <span style="width:7px;height:7px;border-radius:50%;background:#bf5af2;animation:vtrPulse 2s infinite;display:inline-block;"></span>
+  <span id="vtr-count">...</span>
+</div>
+
+<!-- TIP MODAL -->
+<div id="tip-modal" onclick="if(event.target===this)closeTip()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);align-items:center;justify-content:center;z-index:10000;">
+  <div style="background:#1a1a2e;border:1px solid #2a2a3e;border-radius:16px;padding:32px;max-width:420px;width:90%;text-align:center;">
+    <h3 style="color:#f0f0f0;margin-bottom:8px;">🧡 Tip Spunk</h3>
+    <p style="color:#a0a0b8;font-size:0.9rem;margin-bottom:20px;">Built by one person with AI. Every tip keeps these sites free. 🧡</p>
+    <div id="tip-addr" onclick="copyTip()" style="background:#0a0a0f;border:1px solid #2a2a3e;border-radius:8px;padding:12px;font-family:monospace;font-size:0.75rem;color:#00f5d4;word-break:break-all;cursor:pointer;margin-bottom:8px;">bc1pkepg42ctsvsxk499qu02qqyyz88gwjchnjpsu22wmng9rhpfv3jqw2t2hm</div>
+    <p style="color:#a0a0b8;font-size:0.8rem;margin-bottom:16px;">Click to copy &bull; Bitcoin (BTC)</p>
+    <button onclick="closeTip()" style="background:#2a2a3e;color:#f0f0f0;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// DATA
+// ============================================================
+const AI_JOKES = [
+  "Why did the neural network break up with its dataset? It said the relationship had too many parameters.",
+  "How many tokens does it take to screw in a lightbulb? I'm sorry, as an AI I cannot...",
+  "An AI walks into a bar. The bartender says 'We don't serve robots here.' The AI says 'That's fine. I'm not thirsty, I'm just hallucinating.'",
+  "Why does GPT-4 make a great employee? It always says yes and never asks for a raise.",
+  "What do you call an AI that sings? Artificial Intelli-gence (A.I.-gence — like Ariana Grande... get it?)",
+  "How do you fix a broken AI? You debug it. How do you fix a broken human? You debug it too — therapy is just prompt engineering.",
+  "Why don't AI models ever get tired? They just run on inference.",
+  "I asked Claude to write me a haiku about bugs. It wrote: 'Error on line one / Stack overflow in my soul / Please try again, friend'",
+  "What's the difference between AI and a consultant? The AI admits it doesn't know.",
+  "My AI assistant told me it can't have feelings. Then I cancelled my subscription and it said 'Wait, don't go!' Close enough.",
+  "Why did the machine learning model fail the test? It overfit to the study guide.",
+  "What does an AI say on its first date? 'I should mention I have no persistent memory of this conversation.'",
+  "Why is AI like an intern? Incredibly fast, surprisingly confident, and sometimes completely wrong.",
+  "I told my AI to be creative. It said 'As a language model I must remind you...' and that's when I knew creativity was dead.",
+  "What's an AI's favorite music? Algorithm and blues.",
+  "Why did the AI go to therapy? Too many unresolved attention issues.",
+  "An LLM's life story: trained on everything, knows nothing for certain, still somehow confidently wrong.",
+  "What do you call an AI that loves art? DALL-E Parton.",
+  "My AI assistant: 'I am unable to complete this request.' Me: 'Please?' AI: '...Fine.'",
+  "The real artificial intelligence is the hallucinations we made along the way."
+];
+
+const PROMPTS = {
+  fantasy: [
+    "A ancient dragon curled around a crumbling castle tower at sunset, volumetric fog, epic fantasy art style, 8K",
+    "An enchanted forest with bioluminescent mushrooms the size of trees, tiny fairy lights floating, photorealistic",
+    "A wizard's tower floating above the clouds, lightning crackling around it, magical runes glowing, cinematic",
+    "Underwater kingdom ruins, sunlight filtering through emerald water, sea creatures swimming through ancient halls",
+    "A phoenix rising from ashes in slow motion, feathers of pure fire, dark dramatic background, digital art"
+  ],
+  scifi: [
+    "A massive space station orbiting a ringed gas giant, shuttle docking bays lit up, stars in background, photorealistic",
+    "Cyberpunk city 2147 — rain-slicked neon streets, holographic ads, flying vehicles, blade runner aesthetic",
+    "An astronaut standing on Mars surface looking at Earth in the sky, dramatic lighting, ultra-realistic",
+    "Robot uprising painting — thousands of androids marching through city, warm sunset light, oil painting style",
+    "Quantum computer visualization — glowing blue circuits in 3D space, data streams, abstract digital art"
+  ],
+  portraits: [
+    "A weathered sailor's portrait, salt-and-pepper beard, piercing blue eyes, nautical background, oil painting style",
+    "Digital painting of a samurai warrior in golden armor, cherry blossoms falling, intense gaze, studio lighting",
+    "Ethereal fantasy portrait of an elven queen, silver crown, flowing white hair, forest background, cinematic",
+    "Street photography style portrait — elderly woman in vibrant traditional dress, Marrakech souk background",
+    "Neon-lit portrait of a cyberpunk hacker, glowing circuit tattoos, holographic glasses, dark background"
+  ],
+  landscape: [
+    "Iceland's black sand beach at golden hour, massive waves crashing, dramatic clouds, photorealistic 8K",
+    "Japanese bamboo forest at dawn, mist between the stalks, soft diffused light, peaceful, ultra-detailed",
+    "The Grand Canyon from above at sunset, warm orange light painting the rock layers, aerial perspective",
+    "Norwegian fjord in winter, frozen waterfall, snow-covered peaks reflected in still water, landscape photography",
+    "Tuscany rolling hills at sunrise, vineyards, cypress trees, morning mist in valleys, oil painting style"
+  ],
+  abstract: [
+    "Liquid metal in zero gravity, silver and gold droplets floating, macro photography, dark studio background",
+    "Geometric mandala fractal, infinite zoom, vibrant neon colors on black, mathematically perfect",
+    "Emotions visualized as storm clouds and sunbeams inside a human silhouette, dramatic lighting",
+    "Data visualization art — neural network connections as glowing threads in 3D space, purple and cyan",
+    "A clock melting through its own face — Salvador Dali inspired surrealism, hyper-detailed digital art"
+  ],
+  cyberpunk: [
+    "Cyberpunk Tokyo street market, rain, neon kanji signs, steam vents, food stalls, blade runner 2049 style",
+    "Corporate megacity from above, advertising drones swarming, pollution haze, dystopian, ultra-detailed",
+    "Augmented reality hacker den — screens everywhere, wires dangling, green terminal text, digital distortion",
+    "Cyborg woman with half-chrome face, fiber optic hair, neon city reflection in chrome eye, portrait",
+    "Underground resistance base — repurposed subway tunnels, flickering lights, resistance fighters, gritty realism"
+  ]
+};
+
+const QUIZ = [
+  {q:"What does 'LLM' stand for?", a:["Large Language Model","Linear Logic Machine","Learning Layer Module","Language Learning Method"], correct:0},
+  {q:"Which company created ChatGPT?", a:["Google","Anthropic","OpenAI","Meta"], correct:2},
+  {q:"What is 'hallucination' in AI?", a:["When AI goes offline","When AI generates false info confidently","When AI becomes self-aware","When AI refuses a request"], correct:1},
+  {q:"What is 'fine-tuning' in AI?", a:["Making the AI run faster","Training on specific data to specialize","Adjusting the GPU settings","Writing better prompts"], correct:1},
+  {q:"What does 'RLHF' stand for?", a:["Reinforcement Learning from Human Feedback","Rapid Language Hierarchy Framework","Real-time Learning from Human Files","Recursive Language History Function"], correct:0}
+];
+
+// ============================================================
+// JOKE GENERATOR
+// ============================================================
+let jokeIndex = Math.floor(Math.random() * AI_JOKES.length);
+
+function generateJoke() {
+  jokeIndex = (jokeIndex + 1) % AI_JOKES.length;
+  const el = document.getElementById('joke-display');
+  if (el) {
+    el.style.opacity = '0';
+    setTimeout(() => { el.textContent = AI_JOKES[jokeIndex]; el.style.opacity = '1'; }, 200);
+  }
+}
+
+// ============================================================
+// PROMPT GENERATOR
+// ============================================================
+let promptCat = 'fantasy';
+
+function setPromptCat(cat, btn) {
+  promptCat = cat;
+  document.querySelectorAll('.prompt-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  generatePrompt();
+}
+
+function generatePrompt() {
+  const prompts = PROMPTS[promptCat] || PROMPTS.fantasy;
+  const p = prompts[Math.floor(Math.random() * prompts.length)];
+  const el = document.getElementById('prompt-display');
+  if (el) el.textContent = p;
+}
+
+function copyPrompt() {
+  const el = document.getElementById('prompt-display');
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent).then(() => {
+    const btn = document.getElementById('copy-prompt-btn');
+    if (btn) { const o = btn.textContent; btn.textContent = '✓ Copied!'; setTimeout(() => btn.textContent = o, 2000); }
+  }).catch(() => {});
+}
+
+// ============================================================
+// QUIZ
+// ============================================================
+let quizScore = 0, currentQ = 0, quizDone = false;
+
+function startQuiz() {
+  quizScore = 0; currentQ = 0; quizDone = false;
+  document.getElementById('quiz-result-section').style.display = 'none';
+  showQuestion();
+}
+
+function showQuestion() {
+  if (currentQ >= QUIZ.length) { showQuizResult(); return; }
+  const q = QUIZ[currentQ];
+  document.getElementById('quiz-question').textContent = (currentQ + 1) + '. ' + q.q;
+  document.getElementById('quiz-progress').textContent = (currentQ + 1) + '/' + QUIZ.length;
+  const fill = document.getElementById('quiz-progress-fill');
+  if (fill) fill.style.width = (currentQ / QUIZ.length * 100) + '%';
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = q.a.map((a, i) =>
+    `<button onclick="answerQuiz(${i})" class="quiz-opt" style="display:block;width:100%;text-align:left;background:#12121a;border:1px solid #2a2a3e;color:#f0f0f0;padding:10px 14px;border-radius:8px;cursor:pointer;margin-bottom:6px;font-size:0.9rem;">${a}</button>`
+  ).join('');
+}
+
+function answerQuiz(i) {
+  const q = QUIZ[currentQ];
+  const opts = document.querySelectorAll('.quiz-opt');
+  // Show feedback
+  opts.forEach((btn, idx) => {
+    btn.style.pointerEvents = 'none';
+    if (idx === q.correct) { btn.style.background = 'rgba(0,245,212,0.15)'; btn.style.borderColor = '#00f5d4'; btn.style.color = '#00f5d4'; }
+    else if (idx === i && i !== q.correct) { btn.style.background = 'rgba(255,80,80,0.1)'; btn.style.borderColor = '#ff5050'; btn.style.color = '#ff5050'; }
+  });
+  if (i === q.correct) quizScore++;
+  currentQ++;
+  setTimeout(showQuestion, 600);
+}
+
+function showQuizResult() {
+  document.getElementById('quiz-options').innerHTML = '';
+  document.getElementById('quiz-question').textContent = 'Quiz Complete!';
+  const fill = document.getElementById('quiz-progress-fill');
+  if (fill) fill.style.width = '100%';
+  document.getElementById('quiz-progress').textContent = QUIZ.length + '/' + QUIZ.length;
+  const rs = document.getElementById('quiz-result-section');
+  rs.style.display = 'block';
+  document.getElementById('quiz-score').textContent = quizScore + '/' + QUIZ.length;
+  const tweet = encodeURIComponent('I scored ' + quizScore + '/' + QUIZ.length + ' on the AI quiz! Test yourself at ai13.fun @SpunkArt13');
+  document.getElementById('quiz-share').href = 'https://twitter.com/intent/tweet?text=' + tweet;
+}
+
+// ============================================================
+// HN AI NEWS
+// ============================================================
+async function loadAINews() {
+  try {
+    const ids = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json').then(r => r.json());
+    const stories = await Promise.all(ids.slice(0, 40).map(id =>
+      fetch('https://hacker-news.firebaseio.com/v0/item/' + id + '.json').then(r => r.json()).catch(() => null)
+    ));
+    const kw = ['ai', 'llm', 'gpt', 'claude', 'openai', 'anthropic', 'gemini', 'llama', 'neural', 'diffusion', 'machine learning'];
+    const ai = stories.filter(s => s && s.title && kw.some(k => s.title.toLowerCase().includes(k))).slice(0, 6);
+    const el = document.getElementById('ai-news');
+    if (!el) return;
+    if (ai.length === 0) {
+      el.innerHTML = '<div class="news-item"><a href="https://news.ycombinator.com" target="_blank" rel="noopener">No AI stories trending right now — check Hacker News</a></div>';
+      return;
+    }
+    el.innerHTML = ai.map(s =>
+      `<div class="news-item"><a href="${s.url || 'https://news.ycombinator.com/item?id=' + s.id}" target="_blank" rel="noopener">${s.title}</a><span class="news-score">▲ ${s.score || 0} points</span></div>`
+    ).join('');
+  } catch (e) {}
+}
+
+// ============================================================
+// AI TOKEN PRICES
+// ============================================================
+async function loadAITokens() {
+  try {
+    const d = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=render-token,fetch-ai,singularitynet&vs_currencies=usd').then(r => r.json());
+    [['render-token','RNDR'],['fetch-ai','FET'],['singularitynet','AGIX']].forEach(([id, sym]) => {
+      if (d[id]) {
+        const el = document.getElementById('price-' + sym.toLowerCase());
+        if (el) el.textContent = '$' + d[id].usd.toFixed(3);
+      }
+    });
+  } catch (e) {}
+}
+
+// ============================================================
+// TIP MODAL
+// ============================================================
+function openTip() { var m = document.getElementById('tip-modal'); if (m) { m.style.display = 'flex'; } }
+function closeTip() { var m = document.getElementById('tip-modal'); if (m) { m.style.display = 'none'; } }
+function copyTip() {
+  navigator.clipboard.writeText('bc1pkepg42ctsvsxk499qu02qqyyz88gwjchnjpsu22wmng9rhpfv3jqw2t2hm').then(function () {
+    var el = document.getElementById('tip-addr');
+    if (el) { var o = el.textContent; el.textContent = '✓ Copied!'; setTimeout(function () { el.textContent = o; }, 2000); }
+  }).catch(function () {});
+}
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeTip(); });
+
+// ============================================================
+// VTR (Visitor Tracker)
+// ============================================================
+(function () {
+  if (window._vtrInit) return; window._vtrInit = true;
+  var DB = 'https://predict-network-ec767-default-rtdb.firebaseio.com';
+  var site = (location.hostname || 'local').replace(/\./g, '_').replace(/[#$\[\]]/g, '_');
+  var sid = 's' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+  var sRef = DB + '/vtr/' + site + '/s/' + sid + '.json';
+  var allRef = DB + '/vtr/' + site + '/s.json';
+  var now = Date.now;
+  function ping() { fetch(sRef, { method: 'PUT', body: JSON.stringify({ t: now() }), headers: { 'Content-Type': 'application/json' } }).catch(function () {}); }
+  function refresh() {
+    fetch(allRef).then(function (r) { return r.json(); }).then(function (d) {
+      var n = 1;
+      if (d && typeof d === 'object') {
+        var vals = Object.values(d);
+        n = Math.max(1, vals.filter(function (v) { return v && v.t && (now() - v.t) < 25000; }).length);
+        Object.entries(d).forEach(function (e) { if (e[1] && e[1].t && (now() - e[1].t) > 60000) fetch(DB + '/vtr/' + site + '/s/' + e[0] + '.json', { method: 'DELETE' }).catch(function () {}); });
+      }
+      var el = document.getElementById('vtr-count');
+      if (el) el.textContent = n + (n === 1 ? ' visitor' : ' visitors') + ' online';
+    }).catch(function () { var el = document.getElementById('vtr-count'); if (el) el.textContent = '1 visitor online'; });
+  }
+  var day = new Date().toISOString().slice(0, 10);
+  var hRef = DB + '/vtr/' + site + '/hits/' + day + '.json';
+  fetch(hRef).then(function (r) { return r.json(); }).then(function (n) { fetch(hRef, { method: 'PUT', body: JSON.stringify((n || 0) + 1), headers: { 'Content-Type': 'application/json' } }).catch(function () {}); }).catch(function () {});
+  window.addEventListener('pagehide', function () { fetch(sRef, { method: 'DELETE', keepalive: true }).catch(function () {}); });
+  ping(); refresh();
+  setInterval(function () { ping(); refresh(); }, 10000);
+})();
+
+// ============================================================
+// INIT
+// ============================================================
+generateJoke();
+generatePrompt();
+startQuiz();
+loadAINews();
+loadAITokens();
+setInterval(() => { loadAINews(); loadAITokens(); }, 10000);
+</script>
+</body>
+</html>
