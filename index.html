@@ -985,7 +985,7 @@ async function loadAINews() {
 // ============================================================
 async function loadAITokens() {
   try {
-    const d = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=render-token,fetch-ai,singularitynet&vs_currencies=usd').then(r => r.json());
+    const _r=await fetch('https://api.coingecko.com/api/v3/simple/price?ids=render-token,fetch-ai,singularitynet&vs_currencies=usd');if(!_r.ok)return;const d=await _r.json();
     [['render-token','RNDR'],['fetch-ai','FET'],['singularitynet','AGIX']].forEach(([id, sym]) => {
       if (d[id]) {
         const el = document.getElementById('price-' + sym.toLowerCase());
